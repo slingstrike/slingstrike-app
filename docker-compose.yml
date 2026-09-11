@@ -1,3 +1,4 @@
+name: slingstrike
 services:
   app:
     build:
