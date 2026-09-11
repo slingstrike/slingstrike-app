@@ -1,1 +1,21 @@
+.gitlab-ci.yml
+
+**/__pycache__/
+**/*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+node_modules/
+frontend/user_node_modules/
+frontend/dist/
+*.db
 .env
+.env.local
+
+# MkDocs build output
+docs/site/
+
+# Internal project artifacts (meeting minutes, runbooks, etc.)
+project/

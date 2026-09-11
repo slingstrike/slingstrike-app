@@ -1,0 +1,63 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-000000000005"
+name: "Pass-the-Hash - NTLM Network Logon"
+description: "Simulates a successful network logon using a stolen NTLM hash. Generates Windows Security Event 4624 with logon type 3 and NTLM authentication, the key indicator of Pass-the-Hash lateral movement."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: os
+  platform: Windows
+classification:
+  mitre_tactics:
+    - TA0008
+  mitre_techniques:
+    - T1550.002
+  tags:
+    - windows
+    - pass-the-hash
+    - ntlm
+    - lateral-movement
+log_events:
+  - sequence: 1
+    format: windows_evtxml
+    template: |
+      <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+        <System>
+          <EventID>4624</EventID>
+          <Computer>{{ target_computer }}</Computer>
+          <TimeCreated SystemTime="{{ _ts_rfc3164 }}"/>
+        </System>
+        <EventData>
+          <Data Name="TargetUserName">{{ target_username }}</Data>
+          <Data Name="LogonType">3</Data>
+          <Data Name="AuthenticationPackageName">NTLM</Data>
+          <Data Name="IpAddress">{{ src_ip }}</Data>
+          <Data Name="WorkstationName">{{ src_hostname }}</Data>
+          <Data Name="LogonGuid">{{ logon_guid }}</Data>
+        </EventData>
+      </Event>
+    variables:
+      target_computer:
+        type: hostname
+        default: "fileserver01.corp.local"
+      _ts_rfc3164:
+        type: timestamp
+        default: "2026-06-27T00:00:00Z"
+        source: generated
+      target_username:
+        type: string
+        default: "Administrator"
+      src_ip:
+        type: ip
+        default: "10.10.0.1"
+      src_hostname:
+        type: hostname
+        default: "COMPROMISED-WS"
+      logon_guid:
+        type: uuid
+        default: "00000000-0000-4000-8000-000000000000"
+        source: generated

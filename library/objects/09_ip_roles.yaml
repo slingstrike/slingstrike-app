@@ -1,0 +1,35 @@
+category: "Network"
+objects:
+  - name: "Source IPv4"
+    placeholder: "src_ipv4"
+    type: "ipv4"
+    description: "Curated IPv4 addresses for the source/origin side of a connection (e.g. firewall or connection logs). Clone and replace with your own network's addresses."
+    values:
+      - "192.0.2.10"
+      - "192.0.2.20"
+      - "198.51.100.15"
+
+  - name: "Destination IPv4"
+    placeholder: "dst_ipv4"
+    type: "ipv4"
+    description: "Curated IPv4 addresses for the destination/target side of a connection (e.g. firewall or connection logs). Clone and replace with your own network's addresses."
+    values:
+      - "203.0.113.10"
+      - "203.0.113.20"
+      - "198.51.100.40"
+
+  - name: "Source IPv6"
+    placeholder: "src_ipv6"
+    type: "ipv6"
+    description: "Curated IPv6 addresses for the source/origin side of a connection (e.g. firewall or connection logs). Clone and replace with your own network's addresses."
+    values:
+      - "2001:db8::10"
+      - "2001:db8::20"
+
+  - name: "Destination IPv6"
+    placeholder: "dst_ipv6"
+    type: "ipv6"
+    description: "Curated IPv6 addresses for the destination/target side of a connection (e.g. firewall or connection logs). Clone and replace with your own network's addresses."
+    values:
+      - "2001:db8:1::10"
+      - "2001:db8:1::20"

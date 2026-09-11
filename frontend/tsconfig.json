@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+//  "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "react-router": ["./user_node_modules/react-router"],
+      "react-router/*": ["./user_node_modules/react-router/*"],
+      "react-router-dom": ["./user_node_modules/react-router-dom"],
+      "react-router-dom/*": ["./user_node_modules/react-router-dom/*"],
+      "@monaco-editor/react": ["./user_node_modules/@monaco-editor/react"],
+      "@monaco-editor/react/*": ["./user_node_modules/@monaco-editor/react/*"],
+      "lucide-react": ["./user_node_modules/lucide-react"],
+      "lucide-react/*": ["./user_node_modules/lucide-react/*"],
+      "clsx": ["./user_node_modules/clsx"],
+      "tailwind-merge": ["./user_node_modules/tailwind-merge"]
+    }
+  },
+  "include": ["src"]
+}

@@ -1,0 +1,54 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-000000000008"
+name: "LDAP Enumeration - AD Object Access"
+description: "Simulates Windows Security Event 4661 JSON log entries produced when Active Directory objects are accessed during LDAP enumeration, such as querying group membership or listing computer accounts."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: os
+  platform: Windows
+classification:
+  mitre_tactics:
+    - TA0007
+  mitre_techniques:
+    - T1069.002
+  tags:
+    - windows
+    - ldap
+    - active-directory
+    - discovery
+log_events:
+  - sequence: 1
+    format: json
+    template: '{"timestamp":"{{ _ts_rfc3164 }}","event_id":4661,"computer":"{{ computer_name }}","subject":{"username":"{{ username }}","domain":"{{ domain }}"},"object":{"object_class":"{{ object_class }}","object_name":"{{ object_name }}"},"access_mask":"0x100"}'
+    repeat: 20
+    delay_ms: 100
+    variables:
+      _ts_rfc3164:
+        type: timestamp
+        default: "2026-06-27T00:00:00Z"
+        source: generated
+      computer_name:
+        type: hostname
+        default: "dc01.corp.local"
+      username:
+        type: string
+        default: "svc-account"
+      domain:
+        type: string
+        default: "CORP"
+      object_class:
+        type: enum
+        default: "group"
+        values:
+          - "user"
+          - "group"
+          - "computer"
+          - "organizationalUnit"
+      object_name:
+        type: string
+        default: "CN=Domain Admins,CN=Users,DC=corp,DC=local"

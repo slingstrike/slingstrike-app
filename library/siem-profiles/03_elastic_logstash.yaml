@@ -1,0 +1,7 @@
+uuid: "a0eebc99-9c0b-4ef8-bb6d-000000000003"
+name: "Elastic Logstash"
+description: "Elastic Stack syslog input via Logstash - TLS on port 6514. Requires a syslog input plugin configured in your Logstash pipeline."
+host: "logstash.example.internal"
+port: 6514
+protocol: "tls"
+tls_ca_cert: null

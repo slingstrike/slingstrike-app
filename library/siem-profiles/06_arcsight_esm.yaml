@@ -1,0 +1,7 @@
+uuid: "a0eebc99-9c0b-4ef8-bb6d-000000000006"
+name: "ArcSight ESM"
+description: "ArcSight ESM syslog connector - UDP CEF receiver. Configure a SmartConnector of type Syslog Daemon on the ESM side."
+host: "arcsight.example.internal"
+port: 514
+protocol: "udp"
+tls_ca_cert: null

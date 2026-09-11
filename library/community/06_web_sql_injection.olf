@@ -1,0 +1,64 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-000000000006"
+name: "Web Application SQL Injection Scan"
+description: "Simulates HTTP access log entries for SQL injection probe requests. Generates Apache Combined Log Format entries as produced by Apache HTTPD or nginx."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: application
+  platform: Apache HTTPD
+classification:
+  mitre_tactics:
+    - TA0043
+  mitre_techniques:
+    - T1190
+  tags:
+    - web
+    - sql-injection
+    - scanning
+    - initial-access
+log_events:
+  - sequence: 1
+    format: custom
+    template: |
+      {{ src_ip }} - {{ http_user }} [{{ log_timestamp }}] "{{ method }} {{ request_path }} HTTP/1.1" {{ status_code }} {{ response_bytes }} "-" "{{ user_agent }}"
+    repeat: 5
+    delay_ms: 100
+    variables:
+      src_ip:
+        type: ip
+        default: "10.10.0.1"
+      http_user:
+        type: string
+        default: "-"
+      log_timestamp:
+        type: string
+        default: "27/Jun/2026:12:00:00 +0000"
+      method:
+        type: enum
+        default: "GET"
+        values:
+          - "GET"
+          - "POST"
+          - "PUT"
+          - "DELETE"
+      request_path:
+        type: string
+        default: "/search?q=1' OR '1'='1"
+      status_code:
+        type: integer
+        default: 200
+        min: 100
+        max: 599
+      response_bytes:
+        type: integer
+        default: 4096
+        min: 0
+        max: 10000000
+      user_agent:
+        type: string
+        default: "sqlmap/1.7"

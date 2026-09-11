@@ -1,0 +1,31 @@
+category: "Network"
+objects:
+  - name: "C2 Hosts"
+    placeholder: "c2_host"
+    type: "hostname"
+    description: "Simulated command-and-control hostnames for beaconing use cases"
+    values:
+      - "update.delivery-cdn.com"
+      - "telemetry.svchost.io"
+      - "patch.sys-updates.net"
+
+  - name: "DNS Query Names"
+    placeholder: "query_name"
+    type: "hostname"
+    description: "DNS query names for DNS tunneling and enumeration use cases"
+    values:
+      - "corp.local"
+      - "internal.acme.com"
+      - "dc01.corp.local"
+      - "wpad.corp.local"
+
+  - name: "DNS Query Types"
+    placeholder: "query_type"
+    type: "string"
+    description: "DNS record types for DNS query log events"
+    values:
+      - "A"
+      - "AAAA"
+      - "MX"
+      - "TXT"
+      - "CNAME"

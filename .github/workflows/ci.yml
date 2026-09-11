@@ -1,0 +1,200 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  # Runs as soon as any Python file exists in backend/
+  lint-backend:
+    name: Lint backend
+    runs-on: ubuntu-latest
+    if: >
+      contains(toJSON(github.event.commits.*.modified), 'backend/') ||
+      contains(toJSON(github.event.commits.*.added), 'backend/') ||
+      github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for Python files
+        id: check
+        run: |
+          if find backend/ -name "*.py" -quit 2>/dev/null | grep -q .; then
+            echo "has_python=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_python=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.check.outputs.has_python == 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Install ruff
+        if: steps.check.outputs.has_python == 'true'
+        run: pip install ruff
+
+      - name: ruff check
+        if: steps.check.outputs.has_python == 'true'
+        run: ruff check backend/
+
+      - name: ruff format check
+        if: steps.check.outputs.has_python == 'true'
+        run: ruff format --check backend/
+
+      - name: No Python files yet - skipping
+        if: steps.check.outputs.has_python == 'false'
+        run: echo "No Python source files found. Lint will run once backend code is added."
+
+  # Runs as soon as any TypeScript/JavaScript file exists in frontend/
+  lint-frontend:
+    name: Lint frontend
+    runs-on: ubuntu-latest
+    if: >
+      contains(toJSON(github.event.commits.*.modified), 'frontend/') ||
+      contains(toJSON(github.event.commits.*.added), 'frontend/') ||
+      github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for frontend files
+        id: check
+        run: |
+          if find frontend/ -name "*.ts" -o -name "*.tsx" 2>/dev/null | grep -q .; then
+            echo "has_frontend=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_frontend=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.has_frontend == 'true'
+        with:
+          node-version: "24"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        if: steps.check.outputs.has_frontend == 'true'
+        run: npm ci
+        working-directory: frontend/
+
+      - name: ESLint + Prettier check
+        if: steps.check.outputs.has_frontend == 'true'
+        run: npm run lint
+        working-directory: frontend/
+
+      - name: No frontend files yet - skipping
+        if: steps.check.outputs.has_frontend == 'false'
+        run: echo "No TypeScript source files found. Lint will run once frontend code is added."
+
+  # Builds both service images to catch Dockerfile regressions early.
+  # Mirrors the build contexts in docker-compose.yml exactly.
+  build-docker:
+    name: Build Docker images
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build backend image (linux/amd64)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: backend/Dockerfile
+          push: false
+          platforms: linux/amd64
+
+      - name: Build frontend image (linux/amd64)
+        uses: docker/build-push-action@v6
+        with:
+          context: frontend/
+          file: frontend/Dockerfile
+          push: false
+          platforms: linux/amd64
+
+  sast:
+    name: SAST
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install SAST tools
+        # Install bandit + safety, then install the root package so the six
+        # custom Bandit plugins are registered via entry points.
+        run: |
+          pip install bandit==1.7.10 safety==3.2.8
+          pip install -e .
+
+      - name: Bandit - custom plugin checks (hard gate)
+        # Fails the build on any HIGH/HIGH finding.
+        # Checks: 1-4 Jinja2 SandboxedEnvironment enforcement;
+        #         5 stdlib yaml import; 6 HKDF info parameter.
+        run: |
+          bandit -r backend/ \
+            --exclude backend/tests \
+            -lll -iii
+
+      - name: Bandit - full scan (informational, non-blocking)
+        # Review output manually; promote findings to the hard gate as the
+        # codebase grows.
+        run: |
+          bandit -r backend/ \
+            --exclude backend/tests \
+            -ll || true
+
+      - name: Safety - dependency vulnerability check (informational)
+        # Non-blocking until the team has triaged the initial dependency state.
+        # Promote to a hard gate (remove || true) before v0.3 merge.
+        run: safety check -r backend/requirements.txt || true
+
+  test-backend:
+    name: Test backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt pytest-cov
+
+      - name: pytest + coverage (>= 80%, excludes main.py / alembic / tests)
+        working-directory: backend
+        env:
+          OLF_DB_PATH: /tmp/test_openlogforge.db
+          # ctrace (sys.settrace) is per-frame and misses asyncio coroutine
+          # resumptions on Python 3.12; sysmon fires RESUME events and
+          # correctly tracks every line after each await.
+          COVERAGE_CORE: sysmon
+        run: |
+          pytest tests \
+            --cov=. \
+            --cov-report=term-missing \
+            --cov-fail-under=80
+
+  typecheck-backend:
+    name: Type check backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: mypy strict
+        working-directory: backend
+        run: mypy . --exclude tests --exclude alembic

@@ -1,0 +1,66 @@
+.container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f0f6fc;
+}
+
+.tagline {
+  margin-top: 0.5rem;
+  color: #8b949e;
+  font-size: 0.95rem;
+}
+
+.status-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: #8b949e;
+}
+
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.badge-checking {
+  background: #21262d;
+  color: #8b949e;
+}
+
+.badge-ok {
+  background: #1f4e28;
+  color: #3fb950;
+}
+
+.badge-error {
+  background: #4e1f1f;
+  color: #f85149;
+}
+
+.note {
+  font-size: 0.75rem;
+  color: #484f58;
+}

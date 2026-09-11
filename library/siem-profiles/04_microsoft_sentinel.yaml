@@ -1,0 +1,7 @@
+uuid: "a0eebc99-9c0b-4ef8-bb6d-000000000004"
+name: "Microsoft Sentinel"
+description: "Sentinel syslog collector (CEF/syslog) - UDP to the Log Analytics agent or Azure Monitor Agent on the collector VM."
+host: "sentinel-collector.example.internal"
+port: 514
+protocol: "udp"
+tls_ca_cert: null

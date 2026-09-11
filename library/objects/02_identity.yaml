@@ -1,0 +1,70 @@
+category: "Identity"
+objects:
+  - name: "Usernames"
+    placeholder: "username"
+    type: "username"
+    description: "Standard user accounts in the test environment"
+    values:
+      - "jsmith"
+      - "mwilson"
+      - "adavis"
+      - "bjones"
+      - "tsanders"
+
+  - name: "Target Usernames"
+    placeholder: "target_username"
+    type: "username"
+    description: "Target account names in credential attacks"
+    values:
+      - "administrator"
+      - "svc_backup"
+      - "svc_sql"
+      - "svc_exchange"
+
+  - name: "Target Users"
+    placeholder: "target_user"
+    type: "username"
+    description: "Target user accounts in privilege escalation scenarios"
+    values:
+      - "administrator"
+      - "svc_scan"
+      - "domain_admin"
+
+  - name: "Requesting Users"
+    placeholder: "requesting_user"
+    type: "username"
+    description: "Users initiating requests in service and access logs"
+    values:
+      - "jsmith"
+      - "mwilson"
+      - "adavis"
+
+  - name: "AD Domain Names"
+    placeholder: "domain"
+    type: "hostname"
+    description: "Active Directory domain names"
+    values:
+      - "CORP"
+      - "ACME"
+      - "LAB"
+      - "INTERNAL"
+
+  - name: "LDAP Object Names"
+    placeholder: "object_name"
+    type: "string"
+    description: "Object names in directory service queries"
+    values:
+      - "users"
+      - "credentials"
+      - "config"
+      - "secrets"
+
+  - name: "LDAP Object Classes"
+    placeholder: "object_class"
+    type: "string"
+    description: "Object class names in LDAP enumeration use cases"
+    values:
+      - "user"
+      - "group"
+      - "computer"
+      - "organizationalUnit"

@@ -1,0 +1,50 @@
+category: "Endpoint"
+objects:
+  - name: "Endpoint Hostnames"
+    placeholder: "hostname"
+    type: "hostname"
+    description: "Hostnames of endpoints in the test environment"
+    values:
+      - "WS-ALPHA"
+      - "WS-BETA"
+      - "DESKTOP-3F7K2"
+      - "LAPTOP-SEC01"
+      - "SRV-PROD01"
+
+  - name: "Computer Names"
+    placeholder: "computer_name"
+    type: "hostname"
+    description: "Windows computer account names"
+    values:
+      - "WIN10-WRK01"
+      - "WIN11-SEC02"
+      - "DESKTOP-8A2C1"
+      - "LAPTOP-CORP03"
+
+  - name: "Workstation Names"
+    placeholder: "workstation_name"
+    type: "hostname"
+    description: "Workstation names for lateral movement scenarios"
+    values:
+      - "WORKSTATION-01"
+      - "WORKSTATION-02"
+      - "WS-FINANCE-01"
+
+  - name: "Target Computers"
+    placeholder: "target_computer"
+    type: "hostname"
+    description: "Target computer names in attack scenarios"
+    values:
+      - "FILE-SVR01"
+      - "DC-CORP01"
+      - "SQL-DB01"
+      - "EXCH-MAIL01"
+
+  - name: "Source Hostnames"
+    placeholder: "src_hostname"
+    type: "hostname"
+    description: "Originating hostnames in network log events"
+    values:
+      - "WS-ALPHA"
+      - "LAPTOP-SEC01"
+      - "DESKTOP-3F7K2"

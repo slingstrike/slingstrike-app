@@ -1,0 +1,7 @@
+uuid: "a0eebc99-9c0b-4ef8-bb6d-000000000002"
+name: "IBM QRadar"
+description: "QRadar syslog listener - RFC 5424 over TCP. Configure a Log Source of type Syslog in the QRadar console."
+host: "qradar.example.internal"
+port: 514
+protocol: "tcp"
+tls_ca_cert: null

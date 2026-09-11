@@ -1,0 +1,33 @@
+category: "Windows"
+objects:
+  - name: "Windows Service Names"
+    placeholder: "service_name"
+    type: "string"
+    description: "Windows service names for persistence and privilege escalation use cases"
+    values:
+      - "wuauserv"
+      - "svchost"
+      - "lsass"
+      - "spoolsv"
+      - "bits"
+
+  - name: "SMB Share Names"
+    placeholder: "share_name"
+    type: "string"
+    description: "SMB share names for lateral movement use cases"
+    values:
+      - "C$"
+      - "ADMIN$"
+      - "IPC$"
+      - "Data"
+      - "Backup"
+
+  - name: "Shell Commands"
+    placeholder: "command"
+    type: "string"
+    description: "Shell commands for execution and discovery use cases"
+    values:
+      - "powershell.exe -enc JABlAHgAZQ=="
+      - "cmd.exe /c whoami"
+      - "wscript.exe malware.vbs"
+      - "certutil.exe -urlcache -split -f"

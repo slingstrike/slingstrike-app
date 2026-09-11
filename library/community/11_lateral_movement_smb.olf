@@ -1,0 +1,49 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-00000000000b"
+name: "Lateral Movement via SMB Admin Share"
+description: "Simulates an IDS CEF log entry for SMB connection to an administrative share (ADMIN$ or C$), consistent with lateral movement using tools such as PsExec or CrackMapExec."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: security_device
+  platform: Generic IDS
+classification:
+  mitre_tactics:
+    - TA0008
+  mitre_techniques:
+    - T1021.002
+  tags:
+    - windows
+    - smb
+    - lateral-movement
+    - psexec
+log_events:
+  - sequence: 1
+    format: cef
+    template: "CEF:0|Security|IDS|1.0|100001|SMB Admin Share Access|7|src={{ src_ip }} dst={{ dst_ip }} dpt={{ dst_port }} suser={{ username }} cs1={{ share_name }} cs1Label=ShareName"
+    variables:
+      src_ip:
+        type: ip
+        default: "10.10.0.1"
+      dst_ip:
+        type: ip
+        default: "10.10.0.2"
+      dst_port:
+        type: integer
+        default: 445
+        min: 1
+        max: 65535
+      username:
+        type: string
+        default: "CORP\\jdoe"
+      share_name:
+        type: enum
+        default: "ADMIN$"
+        values:
+          - "ADMIN$"
+          - "C$"
+          - "IPC$"

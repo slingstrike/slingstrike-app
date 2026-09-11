@@ -1,0 +1,54 @@
+category: "Web"
+objects:
+  - name: "HTTP User Agents"
+    placeholder: "user_agent"
+    type: "string"
+    description: "HTTP user agent strings for web and C2 traffic use cases"
+    values:
+      - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+      - "curl/7.68.0"
+      - "python-requests/2.28.0"
+
+  - name: "HTTP Methods"
+    placeholder: "method"
+    type: "string"
+    description: "HTTP request methods"
+    values:
+      - "GET"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "PATCH"
+
+  - name: "HTTP Status Codes"
+    placeholder: "status_code"
+    type: "string"
+    description: "HTTP response status codes"
+    values:
+      - "200"
+      - "301"
+      - "302"
+      - "403"
+      - "404"
+      - "500"
+
+  - name: "Request Paths"
+    placeholder: "request_path"
+    type: "url"
+    description: "URL paths for web application attack use cases"
+    values:
+      - "/api/v1/users"
+      - "/admin/login"
+      - "/wp-admin/"
+      - "/.git/config"
+      - "/etc/passwd"
+
+  - name: "HTTP Auth Users"
+    placeholder: "http_user"
+    type: "username"
+    description: "Usernames in HTTP authentication log events"
+    values:
+      - "admin"
+      - "guest"
+      - "webadmin"
+      - "api_user"

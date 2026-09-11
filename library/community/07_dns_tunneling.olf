@@ -1,0 +1,83 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-000000000007"
+name: "DNS Tunneling - Encoded TXT Queries"
+description: "Simulates BIND named log entries for DNS TXT queries with abnormally long base64-encoded subdomains, consistent with data exfiltration or C2 communication over DNS."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: network_device
+  platform: BIND
+classification:
+  mitre_tactics:
+    - TA0011
+  mitre_techniques:
+    - T1071.004
+  tags:
+    - dns
+    - tunneling
+    - command-and-control
+    - network
+log_events:
+  - sequence: 1
+    format: syslog_rfc3164
+    template: "<30>{{ month }} {{ day_str }} {{ time }} {{ hostname }} named[{{ _pid }}]: client {{ src_ip }}#{{ src_port }}: query: {{ query_name }} IN {{ query_type }} +"
+    repeat: 20
+    delay_ms: 2000
+    variables:
+      month:
+        type: enum
+        default: "Jun"
+        values:
+          - "Jan"
+          - "Feb"
+          - "Mar"
+          - "Apr"
+          - "May"
+          - "Jun"
+          - "Jul"
+          - "Aug"
+          - "Sep"
+          - "Oct"
+          - "Nov"
+          - "Dec"
+      day_str:
+        type: string
+        default: "27"
+      time:
+        type: string
+        default: "12:00:00"
+      hostname:
+        type: hostname
+        default: "dns-resolver-01"
+      _pid:
+        type: integer
+        default: 12345
+        min: 1
+        max: 65535
+        source: generated
+      src_ip:
+        type: ip
+        default: "10.10.0.1"
+      src_port:
+        type: integer
+        default: 54321
+        min: 1024
+        max: 65535
+        source: generated
+      query_name:
+        type: string
+        default: "aHR0cHM6Ly9ldmlsLmNvbS9wYXlsb2Fk.c2.tunnel.evil.com"
+      query_type:
+        type: enum
+        default: "TXT"
+        values:
+          - "A"
+          - "AAAA"
+          - "TXT"
+          - "MX"
+          - "NS"
+          - "CNAME"

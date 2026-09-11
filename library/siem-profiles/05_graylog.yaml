@@ -1,0 +1,7 @@
+uuid: "a0eebc99-9c0b-4ef8-bb6d-000000000005"
+name: "Graylog"
+description: "Graylog syslog input over TCP - create a Syslog TCP input in System > Inputs and set the matching port."
+host: "graylog.example.internal"
+port: 1514
+protocol: "tcp"
+tls_ca_cert: null

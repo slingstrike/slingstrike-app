@@ -1,0 +1,30 @@
+category: "Cloud"
+objects:
+  - name: "S3 Bucket Names"
+    placeholder: "bucket_name"
+    type: "string"
+    description: "Cloud storage bucket names for exfiltration use cases"
+    values:
+      - "corp-backup-2024"
+      - "finance-reports"
+      - "dev-artifacts"
+      - "prod-logs"
+
+  - name: "Storage Object Keys"
+    placeholder: "object_key"
+    type: "string"
+    description: "Cloud storage object keys and file paths"
+    values:
+      - "exports/users_2024.csv"
+      - "backups/db_dump.sql"
+      - "logs/access.log"
+
+  - name: "IAM Usernames"
+    placeholder: "iam_username"
+    type: "username"
+    description: "Cloud IAM usernames for cloud access and exfiltration use cases"
+    values:
+      - "alice@acme.com"
+      - "bob@acme.com"
+      - "svc-cicd@acme.com"
+      - "devops@acme.com"

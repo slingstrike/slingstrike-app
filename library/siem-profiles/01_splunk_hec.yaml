@@ -1,0 +1,7 @@
+uuid: "a0eebc99-9c0b-4ef8-bb6d-000000000001"
+name: "Splunk HEC"
+description: "Splunk HTTP Event Collector over TLS - default enterprise port. Adjust host and token in your Splunk inputs.conf."
+host: "splunk.example.internal"
+port: 8088
+protocol: "tls"
+tls_ca_cert: null

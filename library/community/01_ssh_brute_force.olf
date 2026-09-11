@@ -1,0 +1,55 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-000000000001"
+name: "SSH Brute Force - Failed Authentication"
+description: "Simulates repeated SSH authentication failures from a single source IP. Generates syslog RFC 5424 messages as produced by OpenSSH on Linux targets."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: os
+  platform: Linux
+classification:
+  mitre_tactics:
+    - TA0006
+  mitre_techniques:
+    - T1110
+  tags:
+    - linux
+    - ssh
+    - brute-force
+    - credential-access
+log_events:
+  - sequence: 1
+    format: syslog_rfc5424
+    template: "<34>{{ _ts_rfc3164 }} {{ hostname }} sshd[{{ _pid }}]: Failed password for invalid user {{ username }} from {{ src_ip }} port {{ src_port }} ssh2"
+    repeat: 10
+    delay_ms: 500
+    variables:
+      _ts_rfc3164:
+        type: timestamp
+        default: "2026-06-27T00:00:00Z"
+        source: generated
+      hostname:
+        type: hostname
+        default: "web-srv-01"
+      _pid:
+        type: integer
+        default: 1234
+        min: 1000
+        max: 65535
+        source: generated
+      username:
+        type: string
+        default: "root"
+      src_ip:
+        type: ip
+        default: "10.10.0.1"
+      src_port:
+        type: integer
+        default: 54321
+        min: 1024
+        max: 65535
+        source: generated

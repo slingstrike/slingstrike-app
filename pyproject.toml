@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openlogforge-sast-plugins"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["bandit>=1.7"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bandit_plugins*"]
+
+[project.entry-points."bandit.checks"]
+check_jinja2_unsafe_environment = "bandit_plugins.check_jinja2_sandbox:check_jinja2_unsafe_environment"
+check_sandboxed_env_filters_not_cleared = "bandit_plugins.check_jinja2_sandbox:check_sandboxed_env_filters_not_cleared"
+check_sandboxed_env_globals_not_cleared = "bandit_plugins.check_jinja2_sandbox:check_sandboxed_env_globals_not_cleared"
+check_sandboxed_env_tests_not_cleared = "bandit_plugins.check_jinja2_sandbox:check_sandboxed_env_tests_not_cleared"
+check_stdlib_yaml_import = "bandit_plugins.check_yaml_safe_loader:check_stdlib_yaml_import"
+check_hkdf_info_parameter = "bandit_plugins.check_hkdf_info_parameter:check_hkdf_info_parameter"

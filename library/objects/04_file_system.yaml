@@ -1,0 +1,22 @@
+category: "File System"
+objects:
+  - name: "Working Directories"
+    placeholder: "working_dir"
+    type: "filepath"
+    description: "Working directory paths for process and execution log events"
+    values:
+      - "C:\\Users\\Public"
+      - "C:\\Temp"
+      - "C:\\Windows\\Temp"
+      - "/tmp"
+      - "/var/tmp"
+
+  - name: "Payload Paths"
+    placeholder: "payload_path"
+    type: "filepath"
+    description: "File paths for dropped or executed payloads"
+    values:
+      - "C:\\Temp\\update.exe"
+      - "C:\\Users\\Public\\payload.ps1"
+      - "/tmp/implant"
+      - "C:\\Windows\\Temp\\svc.dll"

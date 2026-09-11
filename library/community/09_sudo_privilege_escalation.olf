@@ -1,0 +1,52 @@
+olf_version: "1.0"
+id: "f47ac10b-58cc-4372-a567-000000000009"
+name: "Sudo Privilege Escalation"
+description: "Simulates a sudo log entry where an unprivileged user runs a command as root. Generates syslog RFC 5424 messages as produced by sudo on Linux systems."
+tier: community
+visibility: public_readonly
+created_by: "openLogForge Community"
+created_at: "2026-06-27T00:00:00Z"
+last_edited_at: "2026-06-27T00:00:00Z"
+exported_at: "2026-06-27T00:00:00Z"
+log_source:
+  category: os
+  platform: Linux
+classification:
+  mitre_tactics:
+    - TA0004
+  mitre_techniques:
+    - T1548.003
+  tags:
+    - linux
+    - sudo
+    - privilege-escalation
+log_events:
+  - sequence: 1
+    format: syslog_rfc5424
+    template: "<85>1 {{ _ts_rfc3164 }} {{ hostname }} sudo {{ _pid }} - - {{ username }} : TTY=pts/0 ; PWD={{ working_dir }} ; USER={{ target_user }} ; COMMAND={{ command }}"
+    variables:
+      _ts_rfc3164:
+        type: timestamp
+        default: "2026-06-27T00:00:00Z"
+        source: generated
+      hostname:
+        type: hostname
+        default: "linux-srv-01"
+      _pid:
+        type: integer
+        default: 5678
+        min: 1
+        max: 65535
+        source: generated
+      username:
+        type: string
+        default: "jdoe"
+      working_dir:
+        type: string
+        default: "/home/jdoe"
+      target_user:
+        type: string
+        default: "root"
+      command:
+        type: string
+        default: "/bin/bash"

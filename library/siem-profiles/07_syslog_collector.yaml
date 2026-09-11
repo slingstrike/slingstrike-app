@@ -1,0 +1,7 @@
+uuid: "a0eebc99-9c0b-4ef8-bb6d-000000000007"
+name: "Syslog Collector"
+description: "Generic syslog collector - UDP on port 514. Update the host to match your collector IP or hostname."
+host: "192.168.1.121"
+port: 514
+protocol: "udp"
+tls_ca_cert: null
