@@ -26,7 +26,7 @@ services:
     ports:
       - "80:8080"
     depends_on:
-      app:
+      backend:
         condition: service_healthy
 
 volumes:
