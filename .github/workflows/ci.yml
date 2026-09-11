@@ -171,7 +171,7 @@ jobs:
       - name: pytest + coverage (>= 80%, excludes main.py / alembic / tests)
         working-directory: backend
         env:
-          OLF_DB_PATH: /tmp/test_openlogforge.db
+          OLF_DB_PATH: /tmp/test_SlingStrike.db
           # ctrace (sys.settrace) is per-frame and misses asyncio coroutine
           # resumptions on Python 3.12; sysmon fires RESUME events and
           # correctly tracks every line after each await.

@@ -31,4 +31,4 @@ See [README.md - Editions](../../../README.md#editions) for Community vs Premium
 - Windows / macOS native installers
 - Automated SIEM feedback loop (alarm confirmation)
 - Custom theme engine (user-defined colour schemes)
-- QRadar / Elastic-specific SIEM integrations (openLogForge is SIEM-agnostic; destination target profiles are transport-level only)
+- QRadar / Elastic-specific SIEM integrations (SlingStrike is SIEM-agnostic; destination target profiles are transport-level only)

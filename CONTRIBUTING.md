@@ -1,4 +1,4 @@
-# Contributing to openLogForge
+# Contributing to SlingStrike
 
 Thank you for your interest in contributing. This document covers everything you need to know before submitting your first pull request.
 
@@ -10,7 +10,7 @@ Thank you for your interest in contributing. This document covers everything you
 
 ### What the CLA is
 
-The CLA is a lightweight agreement that gives the openLogForge project the right to distribute your contribution. It is required because openLogForge has both a free Community edition and paid premium content packs.
+The CLA is a lightweight agreement that gives the SlingStrike project the right to distribute your contribution. It is required because SlingStrike has both a free Community edition and paid premium content packs.
 
 ### What rights you grant
 
@@ -27,7 +27,7 @@ You retain full copyright over your contribution. The CLA grants distribution ri
 
 ### A note on the project license
 
-openLogForge is licensed under the **Apache License 2.0** - a true, OSI-approved open source license. You are free to use, modify, and distribute the application, including in production, at no cost. Your contribution will be subject to this license. Premium content packs are commercial content licensed separately and are not part of the open source code base. Read `LICENSE.txt` before contributing if you have any questions.
+SlingStrike is licensed under the **Apache License 2.0** - a true, OSI-approved open source license. You are free to use, modify, and distribute the application, including in production, at no cost. Your contribution will be subject to this license. Premium content packs are commercial content licensed separately and are not part of the open source code base. Read `LICENSE.txt` before contributing if you have any questions.
 
 CLA acceptance is recorded automatically when you submit a pull request. A bot will prompt you if you have not yet accepted.
 
@@ -37,10 +37,10 @@ CLA acceptance is recorded automatically when you submit a pull request. A bot w
 
 | Type | Target repository | Notes |
 | --- | --- | --- |
-| Bug fix | `openlogforge/openlogforge` | Must include a failing test that the fix resolves |
-| New feature (in-roadmap) | `openlogforge/openlogforge` | Must align to a milestone in the roadmap |
-| Community use case | `openlogforge/community-usecases` | Must meet the acceptance criteria below |
-| Documentation improvement | `openlogforge/openlogforge` | Covers `/docs`, README, API reference |
+| Bug fix | `SlingStrike/SlingStrike` | Must include a failing test that the fix resolves |
+| New feature (in-roadmap) | `SlingStrike/SlingStrike` | Must align to a milestone in the roadmap |
+| Community use case | `SlingStrike/community-usecases` | Must meet the acceptance criteria below |
+| Documentation improvement | `SlingStrike/SlingStrike` | Covers `/docs`, README, API reference |
 | Bug report | GitHub Issues | No PR required - use the issue template |
 
 **Not accepted without prior approval:**
@@ -130,7 +130,7 @@ test(api): add integration tests for use case tier enforcement
 
 ## Community Use Case Contributions
 
-Community use cases are submitted to `openlogforge/community-usecases` as `.olf` files. Each `.olf` file is a single YAML 1.2 document - one file, one use case. The format is human-readable and diffs clearly on GitHub. See the full schema at `docs/spec/olf-format.md`.
+Community use cases are submitted to `SlingStrike/community-usecases` as `.olf` files. Each `.olf` file is a single YAML 1.2 document - one file, one use case. The format is human-readable and diffs clearly on GitHub. See the full schema at `docs/spec/olf-format.md`.
 
 ### Acceptance criteria
 

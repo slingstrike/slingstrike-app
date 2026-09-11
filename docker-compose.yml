@@ -7,7 +7,7 @@ services:
     volumes:
       - olf-data:/data
     environment:
-      - OLF_DB_PATH=/data/openlogforge.db
+      - OLF_DB_PATH=/data/SlingStrike.db
       - OLF_LIBRARY_DIR=/library/community
       - OLF_SIEM_PROFILES_DIR=/library/siem-profiles
     expose:

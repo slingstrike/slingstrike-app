@@ -3,8 +3,8 @@ set -e
 chown -R olf:olf /data
 
 # Back up the database before migration so a failed upgrade can be rolled back
-if [ -f /data/openlogforge.db ]; then
-    su-exec olf cp /data/openlogforge.db /data/openlogforge.db.bak
+if [ -f /data/SlingStrike.db ]; then
+    su-exec olf cp /data/SlingStrike.db /data/SlingStrike.db.bak
 fi
 
 su-exec olf alembic upgrade head

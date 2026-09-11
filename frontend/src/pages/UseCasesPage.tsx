@@ -212,7 +212,7 @@ export default function UseCasesPage() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `openlogforge-use-cases-${new Date().toISOString().slice(0, 10)}.olf`
+    a.download = `SlingStrike-use-cases-${new Date().toISOString().slice(0, 10)}.olf`
     a.click()
     URL.revokeObjectURL(url)
   }

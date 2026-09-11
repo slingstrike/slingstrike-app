@@ -25,7 +25,7 @@ export default function LibraryPremiumPacksPage() {
           and upload your activation package.
         </p>
         <p className="text-xs text-slate-500">
-          Premium packs require an active openLogForge license. Available from v0.6.
+          Premium packs require an active SlingStrike license. Available from v0.6.
         </p>
       </div>
     </div>

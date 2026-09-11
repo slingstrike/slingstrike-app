@@ -1,4 +1,4 @@
-# openLogForge
+# SlingStrike
 
 **Product Requirements Document**
 
@@ -12,11 +12,11 @@
 
 ### 1.1 Purpose
 
-This Product Requirements Document (PRD) defines the functional and non-functional requirements for openLogForge - an open-source web application designed to help cybersecurity analysts, SOC engineers, and SIEM consultants test and validate threat detection correlation rules by simulating realistic log data.
+This Product Requirements Document (PRD) defines the functional and non-functional requirements for SlingStrike - an open-source web application designed to help cybersecurity analysts, SOC engineers, and SIEM consultants test and validate threat detection correlation rules by simulating realistic log data.
 
 ### 1.2 Product Vision
 
-openLogForge provides a self-hosted, Docker-friendly platform where security teams can build, manage, replay, and share log-based attack simulation use cases. By shipping realistic log sequences directly to SIEM platforms preferably via UDP/TCP syslog, teams can validate detection coverage before and after rule changes - closing the gap between rule authorship and real-world efficacy.
+SlingStrike provides a self-hosted, Docker-friendly platform where security teams can build, manage, replay, and share log-based attack simulation use cases. By shipping realistic log sequences directly to SIEM platforms preferably via UDP/TCP syslog, teams can validate detection coverage before and after rule changes - closing the gap between rule authorship and real-world efficacy.
 
 ### 1.3 Background & Problem Statement
 
@@ -27,7 +27,7 @@ Modern SIEM correlation rules are difficult to test without production traffic o
 - Share reproducible test cases across teams or with the broader community.
 - Maintain a library of scenarios mapped to threat frameworks (e.g., MITRE ATT&CK).
 
-openLogForge addresses these gaps with a structured use-case library, a built-in log forger/sender, and a community marketplace driven by cybersecurity professionals.
+SlingStrike addresses these gaps with a structured use-case library, a built-in log forger/sender, and a community marketplace driven by cybersecurity professionals.
 
 ### 1.4 Scope
 
@@ -39,9 +39,9 @@ openLogForge addresses these gaps with a structured use-case library, a built-in
 - Log shipping via UDP syslog, TCP syslog (plain and TLS).
 - Multi-format log output: CEF, LEEF, JSON, RFC 3164/5424 syslog, Windows Event XML, custom.
 - Two strictly separated use case tiers:
-  - **Community** - the default tier. openLogForge ships with 12 out-of-the-box community use cases, seeded at first startup as ordinary community-tier use cases (§3.4); additional community use cases are imported at the user's discretion as `.olf` files (sourced from the GitHub-hosted community repository or any other exchange). Fully editable and exportable.
+  - **Community** - the default tier. SlingStrike ships with 12 out-of-the-box community use cases, seeded at first startup as ordinary community-tier use cases (§3.4); additional community use cases are imported at the user's discretion as `.olf` files (sourced from the GitHub-hosted community repository or any other exchange). Fully editable and exportable.
   - **Premium** - commercially licensed; activated via license key after purchase; encrypted and read-only; cannot be exported or edited directly; cloneable into the community tier for full customisation, with one-click rollback to the original premium version at any time; multi-user access with role-based access control (Admin, Analyst, Viewer), audit log, and LDAP / Active Directory integration.
-- File-based community import/export (`.olf` bundles). The community marketplace is hosted on GitHub (`openlogforge/community-usecases`) and accessed outside the application - the application performs no direct GitHub interaction (see §3.5.3).
+- File-based community import/export (`.olf` bundles). The community marketplace is hosted on GitHub (`SlingStrike/community-usecases`) and accessed outside the application - the application performs no direct GitHub interaction (see §3.5.3).
 - Docker Compose and bare-metal Linux deployment.
 - Full offline / air-gapped operation.
 
@@ -53,7 +53,7 @@ openLogForge addresses these gaps with a structured use-case library, a built-in
 - Automated SIEM feedback loop (alarm confirmation).
 - Native SIEM API integrations (alarm confirmation, active log querying). Named SIEM target profiles (QRadar, Elastic) with format defaults are in scope as syslog delivery endpoints; see §3.3.2.
 - Custom theme engine (user-defined colour schemes) - planned for v1.1.
-- In-app GitHub integration (browse / pull / push from within the UI, PAT storage) - removed by design (CEO decision 2026-06-12): openLogForge is air-gap-first and never connects to GitHub or any external service for community content; community sharing is file-based via `.olf` bundles (§3.5.3).
+- In-app GitHub integration (browse / pull / push from within the UI, PAT storage) - removed by design (CEO decision 2026-06-12): SlingStrike is air-gap-first and never connects to GitHub or any external service for community content; community sharing is file-based via `.olf` bundles (§3.5.3).
 
 ### 1.5 Commercial Model
 
@@ -90,7 +90,7 @@ The application is free and open source (Apache License 2.0). Revenue is generat
 
 **Background:** Responsible for the SIEM platform health and onboarding new log sources. Needs to test that new parsers and correlation rules work end-to-end before promotion to production.
 
-**Goals:** Deploy openLogForge as an internal shared service. Configure multiple SIEM targets. Manage team access and audit who ran which test.
+**Goals:** Deploy SlingStrike as an internal shared service. Configure multiple SIEM targets. Manage team access and audit who ran which test.
 
 **Pain Points:** Onboarding a new log source requires manual log injection. No audit trail for who sent what and when.
 
@@ -229,7 +229,7 @@ The send session SHALL support:
 Each SIEM target configuration page SHALL provide a **Test Connectivity** action. The test proceeds as follows:
 
 1. The forger opens a connection to the target host/port using the configured protocol (UDP / TCP / TCP-TLS).
-2. For **UDP**: sends a single minimal RFC 5424 syslog test message (`openLogForge connectivity test`) and considers the test passed if no socket error is raised (UDP is connectionless; delivery cannot be confirmed).
+2. For **UDP**: sends a single minimal RFC 5424 syslog test message (`SlingStrike connectivity test`) and considers the test passed if no socket error is raised (UDP is connectionless; delivery cannot be confirmed).
 3. For **TCP / TCP-TLS**: completes the TCP handshake (and TLS negotiation if applicable) and sends the same test message over the established connection. The test passes if the connection is accepted and the write succeeds.
 4. For **TCP-TLS**: additionally validates the server certificate against the configured CA bundle (or system trust store if none is configured). Certificate validation failures are reported as a distinct error: `TLS certificate verification failed`.
 5. The result is displayed inline on the SIEM target configuration page within 5 seconds:
@@ -241,7 +241,7 @@ Each SIEM target configuration page SHALL provide a **Test Connectivity** action
 
 #### 3.4.1 Bundled Community Use Cases (Out-of-the-Box)
 
-openLogForge SHALL ship with 12 out-of-the-box **community-tier** use cases covering high-value detection scenarios, pre-loaded at first startup (seeding policy in §3.4.2). Additional community use cases are imported as `.olf` files (§3.5). The bundled set MUST include at minimum:
+SlingStrike SHALL ship with 12 out-of-the-box **community-tier** use cases covering high-value detection scenarios, pre-loaded at first startup (seeding policy in §3.4.2). Additional community use cases are imported as `.olf` files (§3.5). The bundled set MUST include at minimum:
 
 | Category | Use Case Name | Log Source | Formats | MITRE Techniques |
 | -------- | ------------- | ---------- | ------- | ---------------- |
@@ -284,7 +284,7 @@ Any Admin or Analyst MAY import a `.olf` bundle file. On import:
 
 #### 3.5.3 Community Repository (GitHub-hosted, no in-app integration)
 
-The community use case marketplace is hosted on GitHub (`openlogforge/community-usecases`) and is accessed entirely **outside the application**. The application SHALL NOT make any connection to GitHub or any other external service for community content (CEO decision 2026-06-12: openLogForge is air-gap-first, and security teams must never be required to expose credentials or use case content to third-party services from within the application).
+The community use case marketplace is hosted on GitHub (`SlingStrike/community-usecases`) and is accessed entirely **outside the application**. The application SHALL NOT make any connection to GitHub or any other external service for community content (CEO decision 2026-06-12: SlingStrike is air-gap-first, and security teams must never be required to expose credentials or use case content to third-party services from within the application).
 
 - **Browse** - users browse the community catalogue on github.com (or an internal mirror) in their own browser, outside the application.
 - **Download and import** - users download `.olf` bundle files from the repository and import them via the standard file-based import (§3.5.2).
@@ -300,7 +300,7 @@ No GitHub Personal Access Token is ever configured, stored, or transmitted by th
 
 Each purchase generates a unique license key through Keygen.sh, paired with a per-customer `.olf-premium` bundle encrypted using a key derived from that license key. A bundle can only be activated with the license key it was generated for. Activation is fully offline - no network call is made. The `.olf-premium` bundle format, manifest schema, cryptographic parameters, and the mandatory activation flow (key canonicalization, fingerprint check, Ed25519 signature verification, HKDF-SHA256 key derivation, AES-256-GCM decryption, key zeroization) are specified in [`docs/content/spec/olf-format.md` - Premium Bundle](../../../docs/content/spec/olf-format.md#premium-bundle-olf-premium). License key issuance, signed license file generation, and bundle delivery are managed through the Keygen.sh and Lemon Squeezy integration (see Risk O1, §15.3).
 
-**License scope - per instance.** Each license key authorises activation on a single openLogForge instance. Deployments running multiple instances purchase one key per instance. Activating any premium pack license on an instance also unlocks the premium application features (multi-user RBAC, audit log access, LDAP / AD - see §3.7, §3.8) on that instance. Per-instance scope is a contractual term of the license; because activation is fully offline, technical enforcement of instance counts is not possible. This is an accepted residual risk, consistent with the self-hosted DRM posture (Risk T3).
+**License scope - per instance.** Each license key authorises activation on a single SlingStrike instance. Deployments running multiple instances purchase one key per instance. Activating any premium pack license on an instance also unlocks the premium application features (multi-user RBAC, audit log access, LDAP / AD - see §3.7, §3.8) on that instance. Per-instance scope is a contractual term of the license; because activation is fully offline, technical enforcement of instance counts is not possible. This is an accepted residual risk, consistent with the self-hosted DRM posture (Risk T3).
 
 Premium use cases are distributed as encrypted `.olf-premium` bundles. Activation proceeds as follows:
 
@@ -326,10 +326,10 @@ The system SHALL enforce the following restrictions on premium use cases at all 
 
 The purchase journey is external to the application itself. The application handles only the final activation step. The full journey is:
 
-1. **Discovery** - User browses the Pricing page at `openlogforge.com/pricing`. Each premium pack lists its full use case manifest, MITRE ATT&CK mapping, supported formats, and price.
+1. **Discovery** - User browses the Pricing page at `SlingStrike.com/pricing`. Each premium pack lists its full use case manifest, MITRE ATT&CK mapping, supported formats, and price.
 2. **Purchase** - User clicks "Buy Pack". They are directed to the Lemon Squeezy checkout page. Payment is one-time; no account registration is required. Lemon Squeezy acts as merchant of record and handles VAT / sales tax. On successful payment, a Lemon Squeezy webhook triggers Keygen.sh license creation; Keygen.sh issues a signed license file (Ed25519) and triggers generation of the per-customer encrypted bundle (§3.6.1).
 3. **Key delivery** - On successful payment, a transactional email is sent containing:
-   - A single download link for the **activation package** (a ZIP archive containing the Keygen.sh-issued signed license file and the encrypted `.olf-premium` bundle). The package is unique to this purchase and licenses a single openLogForge instance (per-instance licensing, §3.6.1).
+   - A single download link for the **activation package** (a ZIP archive containing the Keygen.sh-issued signed license file and the encrypted `.olf-premium` bundle). The package is unique to this purchase and licenses a single SlingStrike instance (per-instance licensing, §3.6.1).
    - A link to the activation documentation.
 4. **Package download** - User downloads the activation package (ZIP) from the provided link. The download link is valid for 30 days and allows up to 5 downloads (to support re-download after reinstall). The package is generated per-customer at purchase time; the `.olf-premium` bundle inside is encrypted with a key derived from the buyer's unique license key and cannot be activated with any other customer's key.
 5. **Activation** - Admin navigates to **Settings > License Keys** and uploads the activation package (ZIP). The app unpacks it, extracts the `.lic` and `.olf-premium` files, and completes activation fully offline as described in Section 3.6.1. Both successful and failed activation attempts are written to the audit log (§3.8) regardless of outcome.
@@ -420,7 +420,7 @@ Audit logs SHALL be exportable as CSV or JSON. Retention is configurable (defaul
 - A new user with SIEM background SHALL be able to run their first bundled use case against a configured target within 10 minutes of first login, without reading documentation. The first-run onboarding wizard (Section 8.6) is the mechanism for achieving this.
 - All destructive operations (delete, overwrite on import) SHALL require explicit confirmation.
 - The **application UI** SHALL be fully functional on Chrome and Firefox (latest two versions). Mobile browser support for the application is explicitly out of scope for v1.0 - the UI is optimised for desktop/laptop screens (minimum 1280 px width).
-- The **marketing website** (openlogforge.com) SHALL be mobile-responsive across all five pages. This is a separate requirement from the application UI and is listed in the website launch checklist (Section 11.5).
+- The **marketing website** (SlingStrike.com) SHALL be mobile-responsive across all five pages. This is a separate requirement from the application UI and is listed in the website launch checklist (Section 11.5).
 - **Dark mode:** The application SHALL ship with a dark theme enabled by default, with a light theme toggle available in Settings. SOC environments operate predominantly in dark-mode displays; dark-first design is a baseline expectation for the target audience.
 - **Custom themes** *(planned for a future release)*: A custom theme engine allowing users to define and apply their own colour schemes is planned for a post-v1.0 release. v1.0 ships with dark (default) and light themes only; see §1.4 and §12 for roadmap details.
 - **Accessibility:** The application UI SHALL conform to WCAG 2.1 Level AA for all interactive elements. Minimum requirements include: sufficient colour contrast ratios (4.5:1 for normal text, 3:1 for large text), keyboard navigability for all actions, ARIA labels on icon-only buttons, and focus indicators on all interactive elements.
@@ -447,7 +447,7 @@ See [ARCHITECTURE.md - Technology Stack](../../../../ARCHITECTURE.md) for the ca
 
 ### 5.2 High-Level Architecture
 
-openLogForge uses a simple two-tier architecture: a Python FastAPI backend and a pre-built React SPA, glued together by Caddy as the reverse proxy. There is no Node.js runtime anywhere in the stack.
+SlingStrike uses a simple two-tier architecture: a Python FastAPI backend and a pre-built React SPA, glued together by Caddy as the reverse proxy. There is no Node.js runtime anywhere in the stack.
 
 - **Browser (React SPA)** communicates with the Backend API over HTTPS REST. The React layer is intentionally thin - it handles only the Monaco log editor and the live SSE session stream; all other pages are straightforward API consumers.
 - **FastAPI Backend** handles all business logic, RBAC enforcement, database access, and session management. It is the primary contributor surface and is written entirely in Python.
@@ -461,7 +461,7 @@ The default Docker Compose file SHALL define the following services:
 
 | Service | Image | Role |
 |---------|-------|------|
-| app | openlogforge/app:latest | Python FastAPI backend + async forger engine. Exposes internal port 8000. Owns the SQLite named volume. |
+| app | SlingStrike/app:latest | Python FastAPI backend + async forger engine. Exposes internal port 8000. Owns the SQLite named volume. |
 | web | caddy:2-alpine | Serves pre-built React SPA static files; proxies `/api/*` to `app:8000`. Exposes 80 and 443. |
 
 ### 5.4 Data Flow - Send Session
@@ -727,13 +727,13 @@ The GitHub Actions CI pipeline SHALL include the following jobs on every pull re
 - **lint-frontend** - ESLint + Prettier check for the React frontend.
 - **build-frontend** - Vite production build to verify no TypeScript/build errors.
 - **build-docker** - Docker multi-arch image build (linux/amd64 + linux/arm64).
-- **publish** - Push images to GHCR (`ghcr.io/openlogforge/app`) on version tag (`vX.Y.Z`).
+- **publish** - Push images to GHCR (`ghcr.io/SlingStrike/app`) on version tag (`vX.Y.Z`).
 
 ---
 
-## 11. Website & Marketing (openlogforge.com)
+## 11. Website & Marketing (SlingStrike.com)
 
-The full website PRD - including page structure, copy direction, target audiences, tone of voice, SEO keywords, and launch checklist - is maintained as a standalone document in the openlogforge.com repository: [`WEBSITE_PRD.md`](../../../openlogforge.com/WEBSITE_PRD.md).
+The full website PRD - including page structure, copy direction, target audiences, tone of voice, SEO keywords, and launch checklist - is maintained as a standalone document in the SlingStrike.com repository: [`WEBSITE_PRD.md`](../../../SlingStrike.com/WEBSITE_PRD.md).
 
 **Scope summary:** five pages (Home, Features, Pricing, For Managers, Community & Docs), targeting two audiences (security practitioners and budget owners / managers). The marketing website SHALL be mobile-responsive across all five pages. This is distinct from the application UI, which targets desktop only (see §4.4).
 
@@ -791,7 +791,7 @@ Success for v1.0 GA is defined across three dimensions: adoption, community heal
 
 ### 14.1 Overview
 
-openLogForge is developed and governed by a focused team of four senior roles covering the full project lifecycle: product leadership, architecture, development, and security. Senior Project Lead holds final authority on all decisions and also acts as Product Owner. All participants - role holders and external contributors alike - are expected to follow the project Code of Conduct (published in the repository root).
+SlingStrike is developed and governed by a focused team of four senior roles covering the full project lifecycle: product leadership, architecture, development, and security. Senior Project Lead holds final authority on all decisions and also acts as Product Owner. All participants - role holders and external contributors alike - are expected to follow the project Code of Conduct (published in the repository root).
 
 All four core roles are listed in `MAINTAINERS.md` in the repository root. `MAINTAINERS.md` is owned by the Senior Project Lead; all updates require Senior Project Lead approval.
 
@@ -839,7 +839,7 @@ Only the Senior Core Developer may execute a release. A release requires:
 3. A database backup automatically created before any migration (see Section 9.5).
 4. Senior Project Lead sign-off before the tag is pushed.
 5. Signed git tag (`vX.Y.Z`) pushed by the Senior Core Developer.
-6. Docker images published to GHCR (`ghcr.io/openlogforge/app`) with the version tag.
+6. Docker images published to GHCR (`ghcr.io/SlingStrike/app`) with the version tag.
 
 Pre-release builds (alpha, beta, RC) follow the same process with the appropriate pre-release version suffix.
 
@@ -969,4 +969,4 @@ All community use case contributions via pull request to the official GitHub rep
 
 End of Document
 
-openLogForge PRD v1.0
+SlingStrike PRD v1.0

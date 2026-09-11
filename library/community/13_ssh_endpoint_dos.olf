@@ -5,7 +5,7 @@ id: 7afa089a-8ad4-4839-bb96-0f51942ba01f
 name: 'SSH Endpoint Denial of Service: Service Exhaustion Flood'
 tier: community
 visibility: public_readonly
-created_by: openLogForge Community
+created_by: SlingStrike Community
 created_at: '2026-07-15T17:12:32.000Z'
 last_edited_at: '2026-07-20T20:32:07.707Z'
 exported_at: '2026-07-20T20:32:44.667Z'

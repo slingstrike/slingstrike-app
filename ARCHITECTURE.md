@@ -2,10 +2,10 @@
 
 ## Repository Layout
 
-This is the canonical source of truth for the openLogForge directory structure. No other document may restate or copy this tree - reference this section by link instead.
+This is the canonical source of truth for the SlingStrike directory structure. No other document may restate or copy this tree - reference this section by link instead.
 
 ```text
-openlogforge/
+SlingStrike/
 ├── backend/                      # Python 3.12 + FastAPI backend (Docker: app service)
 │   ├── api/                      # FastAPI routers (/api/v1/*)
 │   ├── core/                     # Config, auth, JWT, crypto, RBAC

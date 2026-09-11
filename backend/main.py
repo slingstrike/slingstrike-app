@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
 
 app = FastAPI(
-    title="openLogForge",
+    title="SlingStrike",
     version="0.1.0-dev",
     lifespan=lifespan,
 )

@@ -4,7 +4,7 @@ name: "C2 HTTP Beaconing - Periodic Outbound Connection"
 description: "Simulates firewall LEEF log entries for periodic outbound HTTP/S connections consistent with command-and-control beaconing. Generates Palo Alto PAN-OS TRAFFIC log format."
 tier: community
 visibility: public_readonly
-created_by: "openLogForge Community"
+created_by: "SlingStrike Community"
 created_at: "2026-06-27T00:00:00Z"
 last_edited_at: "2026-06-27T00:00:00Z"
 exported_at: "2026-06-27T00:00:00Z"

@@ -120,7 +120,7 @@ def _check_version(doc: dict[str, Any], warnings: list[str]) -> None:
         if major > _SUPPORTED_MAJOR:
             raise OlfError(
                 "OLF_VERSION_UNSUPPORTED",
-                f"This use case requires a newer version of openLogForge "
+                f"This use case requires a newer version of SlingStrike "
                 f"(olf_version {raw}; supported major: {_SUPPORTED_MAJOR})",
             )
         raise OlfError(

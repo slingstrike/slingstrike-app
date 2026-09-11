@@ -161,7 +161,7 @@ export default function DestinationsPage() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `openlogforge-destinations-${new Date().toISOString().slice(0, 10)}.olf`
+    a.download = `SlingStrike-destinations-${new Date().toISOString().slice(0, 10)}.olf`
     a.click()
     URL.revokeObjectURL(url)
   }

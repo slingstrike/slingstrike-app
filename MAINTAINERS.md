@@ -1,6 +1,6 @@
 # MAINTAINERS
 
-This file is the authoritative record of all core role holders for the openLogForge project.
+This file is the authoritative record of all core role holders for the SlingStrike project.
 
 ---
 

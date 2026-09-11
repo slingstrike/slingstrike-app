@@ -46,7 +46,7 @@ export default function Layout() {
     <div className="flex h-screen bg-slate-900 text-slate-100">
       <aside className="w-56 flex-none flex flex-col bg-slate-900 border-r border-slate-700">
         <div className="flex items-center px-4 py-5 border-b border-slate-700">
-          <img src="/logo.svg" alt="openLogForge" className="h-8 w-auto" />
+          <img src="/logo.svg" alt="SlingStrike" className="h-8 w-auto" />
         </div>
 
         <nav className="flex-1 px-2 py-4 space-y-1">

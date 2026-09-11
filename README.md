@@ -1,4 +1,4 @@
-# openLogForge
+# SlingStrike
 
 **Self-hosted SIEM detection rule testing platform.**
 
@@ -8,7 +8,7 @@ Build, manage, and replay log-based attack simulation use cases. Ship realistic 
 
 ## What it does
 
-openLogForge lets security teams:
+SlingStrike lets security teams:
 
 - Build reusable log simulation use cases mapped to MITRE ATT&CK techniques
 - Replay them against any SIEM that accepts syslog (QRadar, Elastic, Splunk, and others)
@@ -37,8 +37,8 @@ make ci
 
 ```bash
 # Clone your fork
-git clone https://github.com/openlogforge/openlogforge.git
-cd openlogforge
+git clone https://github.com/SlingStrike/SlingStrike.git
+cd SlingStrike
 
 # Start the full stack
 docker compose up --build
@@ -46,7 +46,7 @@ docker compose up --build
 # Backend only (for API development)
 cd backend
 pip install -r requirements.txt
-OLF_DB_PATH=./openlogforge.db uvicorn main:app --reload
+OLF_DB_PATH=./SlingStrike.db uvicorn main:app --reload
 
 # Frontend only (for UI development)
 cd frontend
@@ -57,7 +57,7 @@ npm run dev
 
 Open `http://localhost` in your browser. The onboarding wizard guides you through connecting your first SIEM target and running your first use case in under 10 minutes.
 
-> **Note:** openLogForge is currently in early development (pre-alpha). The Docker image is not yet published. Watch this repository for the v0.1 Alpha release.
+> **Note:** SlingStrike is currently in early development (pre-alpha). The Docker image is not yet published. Watch this repository for the v0.1 Alpha release.
 
 ---
 
@@ -94,7 +94,7 @@ Community edition is fully functional for solo use. Premium adds team-oriented f
 
 ## Self-hosted and air-gap friendly
 
-openLogForge runs as two Docker containers. No external services, no cloud dependencies, no phone-home.
+SlingStrike runs as two Docker containers. No external services, no cloud dependencies, no phone-home.
 
 ```text
 backend   - Python 3.12 + FastAPI backend + async log forger engine
@@ -107,9 +107,9 @@ All data stays in a local SQLite volume.
 
 ## Community use cases
 
-Community use cases live in [openlogforge/community-usecases](https://github.com/openlogforge/community-usecases). Each use case is a single `.olf` file - an open, human-readable YAML 1.2 document. The spec is published at [docs/content/spec/olf-format.md](docs/content/spec/olf-format.md).
+Community use cases live in [SlingStrike/community-usecases](https://github.com/SlingStrike/community-usecases). Each use case is a single `.olf` file - an open, human-readable YAML 1.2 document. The spec is published at [docs/content/spec/olf-format.md](docs/content/spec/olf-format.md).
 
-Browse the repository on GitHub, download `.olf` files, and import them via the openLogForge UI. To contribute, export your use case as an `.olf` file and open a pull request.
+Browse the repository on GitHub, download `.olf` files, and import them via the SlingStrike UI. To contribute, export your use case as an `.olf` file and open a pull request.
 
 ---
 
@@ -131,7 +131,7 @@ Browse the repository on GitHub, download `.olf` files, and import them via the 
 | [ - ] | Single-admin auth (bcrypt, account lockout, JWT, password reset) |
 | [ - ] | Docker Compose stack, 12 bundled community use cases, .olf import/export |
 | [ - ] | Premium core: MFA, offline license activation, encrypted bundles, RBAC, audit log |
-| [ - ] | Commerce layer: license service at premium.openlogforge.com (Lemon Squeezy), end-to-end purchase flow, offline activation via web UI |
+| [ - ] | Commerce layer: license service at premium.SlingStrike.com (Lemon Squeezy), end-to-end purchase flow, offline activation via web UI |
 | [ - ] | Enterprise authentication: LDAP / Active Directory integration (Premium edition) |
 | [ - ] | Air-gap hardening, bare-metal install, backup/restore, security audit |
 | [ - ] | Docs site, Forge Pack: Initial Access & Execution premium pack, public release |
@@ -166,8 +166,8 @@ Premium content packs are sold separately under a **perpetual license** (one-tim
 
 ## Links
 
-- Website: [openlogforge.com](https://openlogforge.com)
-- Documentation: [docs.openlogforge.com](https://docs.openlogforge.com)
-- Community use cases: [github.com/openlogforge/community-usecases](https://github.com/openlogforge/community-usecases)
+- Website: [SlingStrike.com](https://SlingStrike.com)
+- Documentation: [docs.SlingStrike.com](https://docs.SlingStrike.com)
+- Community use cases: [github.com/SlingStrike/community-usecases](https://github.com/SlingStrike/community-usecases)
 - Security policy: [SECURITY.md](SECURITY.md)
 - Changelog: [CHANGELOG.md](CHANGELOG.md)

@@ -206,7 +206,7 @@ export default function MyVariablesPage() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `openlogforge-variables-${new Date().toISOString().slice(0, 10)}.olf`
+    a.download = `SlingStrike-variables-${new Date().toISOString().slice(0, 10)}.olf`
     a.click()
     URL.revokeObjectURL(url)
   }

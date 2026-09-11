@@ -64,7 +64,7 @@ We will acknowledge your report within **48 hours** of submission.
 
 ## License Verification Key (Keygen.sh Ed25519)
 
-openLogForge uses an Ed25519 key managed by Keygen.sh to sign license files issued at purchase time. The application verifies the Ed25519 signature on the Keygen.sh-issued license file offline during activation, using the Keygen.sh public key embedded in the application at build time.
+SlingStrike uses an Ed25519 key managed by Keygen.sh to sign license files issued at purchase time. The application verifies the Ed25519 signature on the Keygen.sh-issued license file offline during activation, using the Keygen.sh public key embedded in the application at build time.
 
 **Key custody:** Signing is **automated** within Keygen.sh. Per-customer license files are signed at license creation time with no manual signing step. Private key custody is managed by Keygen.sh.
 

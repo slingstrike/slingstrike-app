@@ -208,7 +208,7 @@ export default function MyObjectsPage() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `openlogforge-objects-${new Date().toISOString().slice(0, 10)}.olf`
+    a.download = `SlingStrike-objects-${new Date().toISOString().slice(0, 10)}.olf`
     a.click()
     URL.revokeObjectURL(url)
   }
