@@ -1,6 +1,6 @@
 name: slingstrike
 services:
-  app:
+  backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
@@ -20,7 +20,7 @@ services:
       retries: 3
       start_period: 45s
 
-  web:
+  frontend:
     build: ./frontend
     restart: unless-stopped
     ports:
