@@ -1,8 +1,19 @@
 {
     admin off
+    auto_https disable_redirects
+    skip_install_trust
+    servers {
+        protocols h1 h2
+    }
 }
 
-:8080 {
+http://{$SLINGSTRIKE_HOST:localhost}:8080 {
+    redir https://{$SLINGSTRIKE_HOST:localhost}{uri} permanent
+}
+
+https://{$SLINGSTRIKE_HOST:localhost}:8443 {
+    tls internal
+
     handle /api/* {
         reverse_proxy backend:8000
     }
