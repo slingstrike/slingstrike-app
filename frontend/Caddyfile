@@ -1,4 +1,6 @@
 :8080 {
+    admin off
+    
     handle /api/* {
         reverse_proxy backend:8000
     }
