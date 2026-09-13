@@ -1,5 +1,7 @@
 {
     admin off
+    # IP-address clients omit SNI; select the configured host's certificate.
+    default_sni {$SLINGSTRIKE_HOST:localhost}
     auto_https disable_redirects
     skip_install_trust
     servers {
