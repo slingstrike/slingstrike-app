@@ -14,7 +14,7 @@ http://{$SLINGSTRIKE_HOST:localhost}:8080 {
 }
 
 https://{$SLINGSTRIKE_HOST:localhost}:8443 {
-    tls internal
+    tls {$SLINGSTRIKE_TLS:internal}
 
     handle /api/* {
         reverse_proxy backend:8000

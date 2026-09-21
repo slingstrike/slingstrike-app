@@ -57,6 +57,8 @@ npm run dev
 
 Open `http://localhost` in your browser. The onboarding wizard guides you through connecting your first SIEM target and running your first use case in under 10 minutes.
 
+For custom HTTPS certificates, set `SLINGSTRIKE_HOST`, `SLINGSTRIKE_TLS_CERT_PEM`, and `SLINGSTRIKE_TLS_KEY_PEM` in `.env`. The PEM variables accept complete, single-quoted multiline contents. Leave both PEM variables empty to use Caddy's local CA. See the [TLS certificate guide](https://docs.slingstrike.com/guides/tls-certificates/) for setup and renewal.
+
 > **Note:** SlingStrike is currently in early development (pre-alpha). The Docker image is not yet published. Watch this repository for the v0.1 Alpha release.
 
 ---
@@ -88,7 +90,7 @@ Community edition is fully functional for solo use. Premium adds team-oriented f
 | LDAP / Active Directory integration | - | Yes |
 | Expert-authored, validated use case packs | - | One-time purchase |
 
-> **Note:** Premium packs are a **perpetual license** — no expiry, no subscription. Your installation keeps working forever. Optional annual maintenance covers application updates (including new major versions), security patches, and updated versions of your already-purchased packs. New packs are always a separate one-time purchase.
+> **Note:** Premium packs are a **perpetual license** - no expiry, no subscription. Your installation keeps working forever. Optional annual maintenance covers application updates (including new major versions), security patches, and updated versions of your already-purchased packs. New packs are always a separate one-time purchase.
 
 ---
 
