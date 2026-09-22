@@ -13,6 +13,8 @@ frontend/dist/
 *.db
 .env
 .env.local
+certificate.crt
+private.key
 
 # MkDocs build output
 docs/site/
